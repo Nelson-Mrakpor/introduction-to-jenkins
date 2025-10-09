@@ -111,20 +111,42 @@ To automate builds when changes are made to the repository, configure a
 build trigger.
 
 From your project configuration page, scroll to **Build Triggers** and
-enable **Poll SCM**. Enter the following schedule:
-
-    H/1 * * * *
-
-This instructs Jenkins to check for changes every minute.
+enable **GitHub hook trigger for GITScm polling**.
 
 ![Jenkins Trigger](jenkins-trigger.png)
 
+### Creating a github webhook.
+In your GitHub repo click on;
+
+`Settings` > `Webhook` > `Add Webhook`
+
+![Add Webhook](add-webhook.png)
+
+On the add webhook page enter the following configuration and click on `Add Webhook`
+
+`Payload URL:`
+
+http://<EC2_PUBLIC_IP_OR_ELASTIC_IP>:8080/github-webhook/
+
+`Content type:` application/json
+
+`Which events would you like to trigger this webhook?`
+
+Select `Send me everything` for this example.
+
+![Webhook Configuration](webhook_settings.png)
+
+GitHub will send a test ping to Jenkins confirming successful connection. A `Response 200` indicates that the ping was successful
+
+![Webhook Ping](webhook_ping.png)
+
+With your webhook created any changes made and pushed to github will trigger a build in Jenkins.
+
+
 ## Conclusion
 
-By completing this project, you have successfully installed and
-configured Jenkins, created and connected a freestyle project to GitHub,
-and set up automated build triggers. With these foundations, you can now
-expand into advanced Jenkins capabilities such as pipelines, integration
-with Docker and Kubernetes, and deployment automation. Jenkins is a
-versatile tool that can significantly improve the efficiency,
-reliability, and scalability of modern software development workflows.
+This project demonstrates the fundamental setup and workflow of Jenkins as a CI/CD automation tool. From installation and initial configuration to creating jobs, connecting GitHub repositories, and automating builds through webhooks, you now have a complete understanding of how Jenkins streamlines software delivery.
+
+By integrating Jenkins with version control systems like GitHub, developers can ensure faster, more reliable, and consistent build and deployment pipelines. With this foundation in place, you can extend your Jenkins setup to include advanced automation—such as pipeline scripts, Docker integration, testing stages, and deployment to production environments.
+
+Jenkins serves as a cornerstone for modern DevOps practices, enabling teams to achieve continuous integration, continuous delivery, and continuous improvement in their development processes.
