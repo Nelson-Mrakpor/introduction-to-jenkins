@@ -142,6 +142,10 @@ GitHub will send a test ping to Jenkins confirming successful connection. A `Res
 
 With your webhook created any changes made and pushed to github will trigger a build in Jenkins.
 
+Now go ahead and make some changes to the README file and push changes to the master branch. Jenkins should be able to use the webhook trigger to build the job.
+
+![Testing Webhook Trigger](webhook_trigger.png)
+
 
 ## Conclusion
 
